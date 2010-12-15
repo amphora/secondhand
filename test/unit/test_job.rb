@@ -2,20 +2,26 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class TestJob < Test::Unit::TestCase
   
+  class SimpleJob
+    def self.perform
+      puts "Some job text"  
+    end
+  end
+  
   def setup
     Secondhand.start(1)
     @factory = Secondhand::Job::Factory.instance    
   end
 
   def test_simple_job_details
-    details = Secondhand::Job.create "TestSimpleJob2", TestSimpleJob2
+    details = Secondhand::Job.create "TestJob::TestSimpleJobDetails", SimpleJob
     assert_kind_of Java::OrgQuartz::JobDetail, details
-    assert_equal TestSimpleJob2, details.job
+    assert_equal SimpleJob, details.job
   end
 
   def test_simple_class_job
-    details = Secondhand::Job.create "TestSimpleJob", TestSimpleJob
-    assert_equal TestSimpleJob, details.job
+    details = Secondhand::Job.create "TestJob::TestSimpleClassJob", SimpleJob
+    assert_equal SimpleJob, details.job
   end
   
   def test_simple_named_job_block
@@ -24,7 +30,7 @@ class TestJob < Test::Unit::TestCase
   end
   
   def test_runner_module_on_class
-    details = Secondhand::Job.create "TestSimpleJob2", TestSimpleJob2
+    details = Secondhand::Job.create "TestJob::RunnerModule", SimpleJob
     assert details.job.respond_to?(:execute)
   end
   

@@ -21,12 +21,3 @@ end
 class Test::Unit::TestCase
   include TestHelper
 end
-
-## utility classes for tests
-class TestSimpleJob
-  def self.perform
-    "ALLOK"    
-  end
-end
-
-class TestSimpleJob2 < TestSimpleJob; end
