@@ -1,4 +1,3 @@
-require 'newgem/tasks'
 Dir['tasks/**/*.rake'].each { |t| load t }
 
 require "rubygems"
@@ -25,10 +24,10 @@ spec = Gem::Specification.new do |s|
   # Change these as appropriate
   s.name              = "secondhand"
   s.version           = "0.1.0"
-  s.summary           = "What this thing does"
+  s.summary           = "Secondhand is a ruby-friendly wrapper around the Quartz Job Scheduler. Create jobs, tell Secondhand when they should run, then sit back and enjoy."
   s.author            = "Don Morrison"
   s.email             = "elskwid@gmail.com"
-  s.homepage          = "http://yoursite.example.com"
+  s.homepage          = "https://github.com/amphora/secondhand"
 
   s.has_rdoc          = true
   s.extra_rdoc_files  = %w(README.md)
