@@ -1,9 +1,7 @@
 require 'java'
 
-# If JRuby::Rack::VERSION is defined then Secondhand is in a servlet. 
-# Secondhand does not need to require jar archives in this case
-# as those should be in WEB-INF/lib and already in the classpath
-unless defined?(JRuby::Rack::VERSION)
+# Assume if we see OrgQuartz that the prereqa are coming along for the ride
+unless defined?(Java::OrgQuartz)
   # jars
   require 'quartz/log4j-1.2.14.jar'
   require 'quartz/quartz-1.8.4.jar'
